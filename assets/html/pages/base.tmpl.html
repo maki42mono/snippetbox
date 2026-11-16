@@ -1,0 +1,19 @@
+{{define "base"}}
+<html>
+    <head>
+        <title>{{template "title" .}} -- Snippetbox</title>
+    </head>
+    <body>
+        <header>
+            <h1><a href="/">Snippetbox</a></h1>
+        </header>
+        {{template "nav" .}}
+        {{block "sidebar" .}}
+            <p>My default sidebar</p>
+        {{end}}
+        <main>
+            {{template "main" .}}
+        </main>
+    </body>
+</html>
+{{end}}

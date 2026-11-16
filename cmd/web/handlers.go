@@ -9,14 +9,18 @@ import (
 )
 
 func home(w http.ResponseWriter, r *http.Request) {
-	ts, err := template.ParseFiles("./assets/html/pages/home.tmpl.html")
+	ts, err := template.ParseFiles(
+		"./assets/html/pages/base.tmpl.html",
+		"./assets/html/pages/home.tmpl.html",
+		"./assets/html/partials/nav.tmpl.html",
+	)
 	if err != nil {
 		log.Print(err.Error())
 		http.Error(w, "Internal Server Error", http.StatusInternalServerError)
 		return
 	}
 
-	err = ts.Execute(w, nil)
+	err = ts.ExecuteTemplate(w, "base", nil)
 	if err != nil {
 		log.Print(err.Error())
 		http.Error(w, "Internal Server Error", http.StatusInternalServerError)
